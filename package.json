@@ -1,0 +1,31 @@
+{
+  "name": "serverless-cloudfront-image-proxy",
+  "version": "0.0.1",
+  "license": "MIT",
+  "devDependencies": {
+    "babel-loader": "",
+    "babel-cli": "^6.26.0",
+    "babel-preset-env": "^1.6.0",
+    "eslint": "^4.8.0",
+    "eslint-config-airbnb": "^16.0.0",
+    "eslint-config-prettier": "^2.2.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.4.0",
+    "husky": "^0.14.3",
+    "jest": "^22.0.4",
+    "lint-staged": "^6.0.0",
+    "serverless": "^1.5.1",
+    "serverless-lambda-version": "^0.1.2",
+    "serverless-offline": "^3.20.2",
+    "serverless-plugin-cloudfront-lambda-edge": "github:silvermine/serverless-plugin-cloudfront-lambda-edge#v2.0-wip",
+    "serverless-webpack": "^5.1.1",
+    "webpack": "^4.5.0",
+    "webpack-node-externals": "^1.5.4"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.224.1",
+    "querystring": "^0.2.0",
+    "sharp": "^0.20.1"
+  }
+}

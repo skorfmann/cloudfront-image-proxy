@@ -1,0 +1,131 @@
+service: cloudfront-image-proxy
+
+provider:
+  name: aws
+  runtime: nodejs6.10 # 8.1 isn't supported yet for lambda@edge
+  region: us-east-1 # only valid option for lambda@edge
+  stage: ${opt:stage, 'dev'}
+  defaultEnvironmentGroup: dev
+  iamRoleStatements:
+    - Effect: Allow
+      Action:
+        - s3:GetObject
+      Resource:
+        - "Fn::Join":
+          - "/"
+          -
+            - { "Fn::GetAtt": [ImageBucket, Arn] }
+            - "*"
+    - Effect: Allow
+      Action:
+        - s3:PutObject
+      Resource:
+        - "Fn::Join":
+          - "/"
+          -
+            - { "Fn::GetAtt": [ImageBucket, Arn] }
+            - "*"
+
+package:
+  individually: true
+
+functions:
+  viewerRequest:
+    handler: src/viewerRequest.handler
+    memorySize: 128 # viewer functions max 128
+    timeout: 1 # viewer functions max 5 seconds
+    lambdaAtEdge:
+      distribution: 'ImageProxyDistribution'
+      eventType: 'viewer-request'
+  viewerResponse:
+    handler: src/viewerResponse.handler
+    memorySize: 128
+    timeout: 1
+    lambdaAtEdge:
+      distribution: 'ImageProxyDistribution'
+      eventType: 'viewer-response'
+  originResponse:
+    handler: src/originResponse.handler
+    memorySize: 512
+    timeout: 15
+    lambdaAtEdge:
+      distribution: 'ImageProxyDistribution'
+      eventType: 'origin-response'
+  originRequest:
+    handler: src/originRequest.handler
+    memorySize: 512
+    timeout: 15
+    lambdaAtEdge:
+      distribution: 'ImageProxyDistribution'
+      eventType: 'origin-request'
+
+plugins:
+  - serverless-webpack
+  - serverless-plugin-cloudfront-lambda-edge
+
+custom:
+  objectPrefix: '${self:service}-${self:provider.stage}'
+  webpack:
+    webpackConfig: 'webpack.config.js'
+    includeModules: true
+    packager: 'npm'
+resources:
+  Resources:
+    ImageBucket:
+      Type: 'AWS::S3::Bucket'
+      DeletionPolicy: Retain
+      Properties:
+        BucketName: '${self:custom.objectPrefix}-image-bucket'
+        AccessControl: 'PublicRead'
+    ImageBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+        Bucket: { "Ref": ImageBucket }
+        PolicyDocument:
+          Statement:
+              - Action:
+                  - s3:GetObject
+                Effect: Allow
+                Principal: "*"
+                Resource:
+                  - "Fn::Join":
+                    - "/"
+                    -
+                      - { "Fn::GetAtt": [ImageBucket, Arn] }
+                      - "*"
+    ImageProxyDistribution:
+      Type: 'AWS::CloudFront::Distribution'
+      Properties:
+        DistributionConfig:
+          DefaultCacheBehavior:
+            TargetOriginId: 'ImageBucketOrigin'
+            ViewerProtocolPolicy: allow-all
+            DefaultTTL: 3600
+            MaxTTL: 3600
+            Compress: true
+            ForwardedValues:
+              QueryString: 'true'
+              QueryStringCacheKeys:
+                - d
+              Cookies:
+                Forward: 'none'
+          DefaultRootObject: 'index.html'
+          Enabled: true
+          PriceClass: 'PriceClass_100' # US / Canada / Europe
+          HttpVersion: 'http2'
+          ViewerCertificate:
+              CloudFrontDefaultCertificate: true
+          Origins:
+            -
+              Id: 'ImageBucketOrigin'
+              DomainName: { 'Fn::GetAtt': [ ImageBucket, DomainName ] }
+              S3OriginConfig: {}
+  Outputs:
+    ImageBucket:
+        Value: { "Ref": ImageBucket}
+        Export:
+          Name: ImageBucket
+    ImageProxyDistribution:
+        Value: { "Ref": ImageProxyDistribution}
+        Export:
+          Name: ImageProxyDistribution
