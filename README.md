@@ -11,7 +11,7 @@ Illustration & inspiration from [this blog post](https://aws.amazon.com/blogs/ne
 This makes use of the [AWS CDK](https://github.com/aws/aws-cdk)
 
 ```
-npm install
+yarn install
 cdk deploy
 ```
 
