@@ -98,15 +98,6 @@
     "@aws-cdk/core" "1.46.0"
     constructs "^3.0.2"
 
-"@aws-cdk/aws-lambda-nodejs@^1.46.0":
-  version "1.46.0"
-  resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda-nodejs/-/aws-lambda-nodejs-1.46.0.tgz#d4afecf16084a54525f9a714e2f55ad99df585ea"
-  integrity sha512-0qCqaCu+h4SjCxaVWRPtrgy2p+Amnua+udqBtaB2Dxa9MgAQbFwQSBTIw5WrIYmPInDs2024vLdKQtU51Tu9Zg==
-  dependencies:
-    "@aws-cdk/aws-lambda" "1.46.0"
-    "@aws-cdk/core" "1.46.0"
-    constructs "^3.0.2"
-
 "@aws-cdk/aws-lambda@1.46.0", "@aws-cdk/aws-lambda@^1.46.0":
   version "1.46.0"
   resolved "https://registry.yarnpkg.com/@aws-cdk/aws-lambda/-/aws-lambda-1.46.0.tgz#2b3b0b3aa41e646b663be2c5955b5b0e10a22b4f"
@@ -3854,11 +3845,6 @@ setprototypeof@1.1.1:
   version "1.1.1"
   resolved "https://registry.yarnpkg.com/setprototypeof/-/setprototypeof-1.1.1.tgz#7e95acb24aa92f5885e0abef5ba131330d4ae683"
   integrity sha512-JvdAWfbXeIGaZ9cILp38HntZSFSo3mWg6xGcJJsd+d4aRMOqauag1C63dJfDw7OaMYwEbHMOxEZ1lqVRYP2OAw==
-
-sha256-file@^1.0.0:
-  version "1.0.0"
-  resolved "https://registry.yarnpkg.com/sha256-file/-/sha256-file-1.0.0.tgz#02cade5e658da3fbc167c3270bdcdfd5409f1b65"
-  integrity sha512-nqf+g0veqgQAkDx0U2y2Tn2KWyADuuludZTw9A7J3D+61rKlIIl9V5TS4mfnwKuXZOH9B7fQyjYJ9pKRHIsAyg==
 
 shebang-command@^1.2.0:
   version "1.2.0"
