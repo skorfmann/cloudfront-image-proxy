@@ -1,31 +1,32 @@
 {
-  "name": "serverless-cloudfront-image-proxy",
-  "version": "0.0.1",
-  "license": "MIT",
+  "name": "cloudfront-image-proxy",
+  "version": "0.1.0",
+  "bin": {
+    "cloudfront-image-proxy": "bin/cloudfront-image-proxy.js"
+  },
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc -w",
+    "test": "jest",
+    "cdk": "cdk"
+  },
   "devDependencies": {
-    "babel-loader": "",
-    "babel-cli": "^6.26.0",
-    "babel-preset-env": "^1.6.0",
-    "eslint": "^4.8.0",
-    "eslint-config-airbnb": "^16.0.0",
-    "eslint-config-prettier": "^2.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.4.0",
-    "husky": "^0.14.3",
-    "jest": "^22.0.4",
-    "lint-staged": "^6.0.0",
-    "serverless": "^1.5.1",
-    "serverless-lambda-version": "^0.1.2",
-    "serverless-offline": "^3.20.2",
-    "serverless-plugin-cloudfront-lambda-edge": "github:silvermine/serverless-plugin-cloudfront-lambda-edge#v2.0-wip",
-    "serverless-webpack": "^5.1.1",
-    "webpack": "^4.5.0",
-    "webpack-node-externals": "^1.5.4"
+    "@aws-cdk/assert": "1.46.0",
+    "@types/jest": "^25.2.1",
+    "@types/node": "10.17.5",
+    "aws-cdk": "1.46.0",
+    "jest": "^25.5.0",
+    "ts-jest": "^25.3.1",
+    "ts-node": "^8.1.0",
+    "typescript": "~3.7.2"
   },
   "dependencies": {
-    "aws-sdk": "^2.224.1",
-    "querystring": "^0.2.0",
-    "sharp": "^0.20.1"
+    "@aws-cdk/aws-cloudfront": "^1.46.0",
+    "@aws-cdk/aws-iam": "^1.46.0",
+    "@aws-cdk/aws-lambda": "^1.46.0",
+    "@aws-cdk/aws-lambda-nodejs": "^1.46.0",
+    "@aws-cdk/aws-s3": "^1.46.0",
+    "@aws-cdk/core": "1.46.0",
+    "source-map-support": "^0.5.16"
   }
 }
