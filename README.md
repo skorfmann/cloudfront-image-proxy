@@ -17,7 +17,7 @@ cdk deploy
 
 ## Usage
 
-Once deployed, upload an image (example.jpg) to the created S3 bucket in an `images` folder (`images/example.jpg`). Now you can request this image via the Cloudfront distribution domain `https://<distribution>.cloudfront.net/images/example.jpg`, or generate other versions of it like that `https://d35oeomhc5klwo.cloudfront.net/images/foo-medium.jpg?d=200x200`.
+Once deployed, upload an image (example.jpg) to the created S3 bucket in an `images` folder (`images/example.jpg`). Now you can request this image via the Cloudfront distribution domain `https://<distribution>.cloudfront.net/images/example.jpg`, or generate other versions of it like that `https://<distribution>.cloudfront.net/images/example.jpg?d=200x200`.
 
 At the moment, there's little sanity checking or error handling, and the only implemented image transformation option is the resizing. However, exposing more options of `sharp` is just a bunch of typing ;) Check the end of the Readme for more ideas.
 
