@@ -1,0 +1,14 @@
+{
+  "name": "origin-response",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "querystring": "^0.2.0",
+    "sharp": "^0.25.4"
+  }
+}

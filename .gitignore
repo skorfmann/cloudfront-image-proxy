@@ -1,5 +1,12 @@
+*.js
+!jest.config.js
+*.d.ts
 node_modules
-.env
-.webpack
-.serverless
-.env*
+yarn-error.log
+# CDK asset staging directory
+.cdk.staging
+cdk.out
+
+# Parcel build directories
+.cache
+.build

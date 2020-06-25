@@ -1,6 +1,6 @@
-# package directories
-node_modules
-jspm_packages
+*.ts
+!*.d.ts
 
-# Serverless directories
-.serverless
+# CDK asset staging directory
+.cdk.staging
+cdk.out
