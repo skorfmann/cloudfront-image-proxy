@@ -1,6 +1,6 @@
 # CloudFront Image Proxy
 
-Make CloudFront resize images "on the fly" via lambda@edge, cache it and persists it in S3. Utilises [Sharp](http://sharp.dimens.io/en/stable) for image transformations.
+Make CloudFront resize images "on the fly" via lambda@edge, cache it and persists it in S3. Utilises [Sharp](https://github.com/lovell/sharp) for image transformations.
 
 ![Schema](./schema.png)
 
