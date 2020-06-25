@@ -34,12 +34,16 @@ While data transfer from AWS origins to Cloudfront is free, data transfer to Lam
 Interestingly enough, the processing time of the image conversion lambda isn't much different for both versions. Probably
 The next improvement which could make sense, is either moving the Bucket in the region where most of the traffic is happening, or to create an API Gateway / Lambda combo to perform the actual image conversion wihin one region.
 
+### SaaS Comparison 
+
 Comparing this with a service like [imgix](https://www.imgix.com/):
 
 - 1000 original images access per month (all conversions included): 3 USD
 - 1 GB CDN data transfer: 0.08 USD
 
-Assuming we generate 10 versions for each original image, this Cloudfront proxy clocks in at around 0.85 USD for 10k generated images (inkl CDN traffic). Since CDN traffic cost for subsequently cached image requests is more or less the same for imigix and Cloudfront, the Cloudfront version runs at roughly 30% of the cost of imgix. However, since imgix is a SaaS offering, it's an unfair comparison and you should take engineering time and opertional burdens into account. Having said that, it's still interesting to see those numbers side by side.
+Assuming we generate 10 versions for each original image, this Cloudfront proxy clocks in at around 0.85 USD for 10k generated images (inkl CDN traffic). Since CDN traffic cost for subsequently cached image requests is more or less the same for imigix and Cloudfront we can ignore this factor. 
+
+The Cloudfront version runs at roughly 30% of the cost of imgix. However, since imgix is a SaaS offering, it's an unfair comparison and you should take engineering time and opertional burdens into account. Having said that, it's still interesting to see those numbers side by side.
 
 If you're interested in more details about the cost estimation, get in touch please.
 
