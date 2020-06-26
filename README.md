@@ -84,6 +84,10 @@ If you're interested in more details about the cost estimation, get in touch ple
 
 - [Retinal](https://github.com/adieuadieu/retinal)
 
+## AWS API Gateway
+
+- [imageResize](https://github.com/yapawa/imageResize)
+
 ## SaaS
 
 - [Cloudinary](https://cloudinary.com/)
